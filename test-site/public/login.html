@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>로그인 - Mock Test Site</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .login-wrap {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      padding: 40px 36px;
+      width: 420px;
+    }
+    .login-wrap h1 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 28px;
+      color: #333;
+    }
+    .login-wrap h1 span { color: #e74c3c; }
+    .field { margin-bottom: 14px; }
+    .field label {
+      display: block;
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    .field input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 15px;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .field input:focus { border-color: #e74c3c; }
+    .captcha-area {
+      margin: 18px 0;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .captcha-area iframe {
+      width: 100%;
+      height: 180px;
+      border: none;
+    }
+    .btnSolid.fix {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: #e74c3c;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btnSolid.fix:hover { background: #c0392b; }
+    .error-msg {
+      display: none;
+      text-align: center;
+      color: #e74c3c;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 11px;
+      color: #aaa;
+    }
+    .mode-badge {
+      display: inline-block;
+      background: #f0f0f0;
+      color: #666;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+  </style>
+  {{CAPTCHA_SCRIPTS}}
+</head>
+<body>
+  <div class="login-wrap">
+    <h1>🔒 <span>Mock</span> 로그인</h1>
+
+    <form id="loginForm" action="/auth/login/page/submit" method="POST">
+      <div class="field">
+        <label for="loginname">아이디</label>
+        <input id="loginname" name="loginname" type="text" autocomplete="username" placeholder="아이디 입력" />
+      </div>
+      <div class="field">
+        <label for="passwd">비밀번호</label>
+        <input id="passwd" name="passwd" type="password" autocomplete="current-password" placeholder="비밀번호 입력" />
+      </div>
+
+      {{CAPTCHA_SECTION}}
+
+      <button type="submit" class="btnSolid fix">로그인</button>
+    </form>
+
+    <p class="error-msg" id="errorMsg">캡차가 올바르지 않습니다. 다시 시도해 주세요.</p>
+    <div class="footer">⚠️ 로컬 테스트 전용 — <span class="mode-badge">{{MODE_BADGE}}</span></div>
+  </div>
+
+  {{FORM_SUBMIT_SCRIPT}}
+  <script>
+    if (window.location.search.includes('error=captcha')) {
+      document.getElementById('errorMsg').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>로그인 성공</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      padding: 50px 40px;
+      text-align: center;
+      max-width: 400px;
+    }
+    .card h1 { font-size: 48px; margin-bottom: 16px; }
+    .card h2 { font-size: 22px; color: #27ae60; margin-bottom: 10px; }
+    .card p { font-size: 14px; color: #666; margin-bottom: 20px; }
+    .card a {
+      display: inline-block;
+      padding: 10px 24px;
+      background: #e74c3c;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .card a:hover { background: #c0392b; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>✅</h1>
+    <h2>로그인 성공!</h2>
+    <p>캡차 인증이 완료되어 대시보드로 이동했습니다.</p>
+    <a href="/auth/login/page/test">다시 테스트하기</a>
+  </div>
+</body>
+</html>

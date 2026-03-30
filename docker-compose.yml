@@ -1,0 +1,13 @@
+services:
+  mock-site:
+    build: ./test-site
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      # 'custom' = 자체 오디오 캡차, 'recaptcha' = Google reCAPTCHA v2
+      - CAPTCHA_MODE=${CAPTCHA_MODE:-custom}
+      # reCAPTCHA 모드 시 실제 키로 교체 (아래는 Google 테스트 키 — 항상 통과)
+      - RECAPTCHA_SITE_KEY=${RECAPTCHA_SITE_KEY:-6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI}
+      - RECAPTCHA_SECRET_KEY=${RECAPTCHA_SECRET_KEY:-6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe}
+    restart: unless-stopped

@@ -1,0 +1,21 @@
+{
+  "name": "captcha-bypass",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scripts/login.js",
+  "scripts": {
+    "login": "node scripts/login.js",
+    "login:agent": "node scripts/login-agent.js",
+    "record": "node scripts/record-all.js",
+    "test:whisper": "node scripts/test-whisper.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "playwright": "^1.58.2"
+  }
+}

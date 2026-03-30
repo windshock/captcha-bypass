@@ -1,0 +1,7 @@
+node_modules/
+.env
+assets/
+artifacts/
+scripts/__pycache__/
+archive/
+.vscode/

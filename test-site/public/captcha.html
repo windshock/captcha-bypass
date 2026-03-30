@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+      background: #fafafa;
+      padding: 12px;
+    }
+    .captcha-box {
+      text-align: center;
+    }
+    .captcha-image {
+      display: block;
+      margin: 0 auto 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .btn-row button {
+      padding: 8px 18px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.15s;
+    }
+    .btn-row button:hover { background: #eee; }
+    .btnSound { color: #2980b9; }
+    .btnRefresh { color: #e67e22; }
+    #captchaTxt {
+      width: 80%;
+      max-width: 220px;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 18px;
+      text-align: center;
+      letter-spacing: 6px;
+      outline: none;
+    }
+    #captchaTxt:focus { border-color: #e74c3c; }
+    .status {
+      font-size: 11px;
+      color: #999;
+      margin-top: 6px;
+      min-height: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="captcha-box">
+    <img class="captcha-image" id="captchaImg" src="/captcha/image" alt="captcha" width="200" height="60" />
+
+    <div class="btn-row">
+      <button type="button" class="btnRefresh" title="새로고침">🔄 새로고침</button>
+      <button type="button" class="btnSound" title="음성듣기">🔊 음성듣기</button>
+    </div>
+
+    <input id="captchaTxt" type="text" maxlength="8" placeholder="숫자 입력" autocomplete="off" />
+    <div class="status" id="status"></div>
+  </div>
+
+  <script>
+    var statusEl = document.getElementById('status');
+
+    // Refresh captcha
+    document.querySelector('.btnRefresh').addEventListener('click', function () {
+      statusEl.textContent = '새 캡차를 불러오는 중...';
+      fetch('/captcha/refresh', { credentials: 'same-origin' })
+        .then(function (r) { return r.json(); })
+        .then(function () {
+          // Reload captcha image
+          var img = document.getElementById('captchaImg');
+          img.src = '/captcha/image?t=' + Date.now();
+          document.getElementById('captchaTxt').value = '';
+          statusEl.textContent = '새 캡차가 로드되었습니다.';
+        })
+        .catch(function () {
+          statusEl.textContent = '새로고침 실패';
+        });
+    });
+
+    // Play audio captcha
+    document.querySelector('.btnSound').addEventListener('click', function () {
+      statusEl.textContent = '음성을 불러오는 중...';
+      fetch('/captcha/audio', { credentials: 'same-origin' })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Audio fetch failed');
+          return res.blob();
+        })
+        .then(function (blob) {
+          var url = URL.createObjectURL(blob);
+          var audio = new Audio(url);
+          audio.play();
+          statusEl.textContent = '음성을 재생 중입니다.';
+          audio.onended = function () {
+            statusEl.textContent = '재생 완료';
+            URL.revokeObjectURL(url);
+          };
+        })
+        .catch(function (err) {
+          statusEl.textContent = '음성 로드 실패: ' + err.message;
+        });
+    });
+  </script>
+</body>
+</html>
