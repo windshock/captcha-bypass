@@ -8,6 +8,8 @@
 
 저는 리서치를 읽는 것에 그치지 않고, 직접 PoC(Proof of Concept)를 만들어 검증해 보기로 했습니다.
 
+> 🔗 **전체 소스 코드**: [github.com/windshock/captcha-bypass](https://github.com/windshock/captcha-bypass)
+
 ---
 
 ## 오픈소스 세 개로 만든 자동 우회 파이프라인
@@ -217,6 +219,8 @@ CAPTCHA를 뚫고 비밀번호도 맞췄다고 해서 끝이 아닙니다.
 핵심은 이것입니다: 무료 도구만으로도 오디오 CAPTCHA를 우회할 수 있다면, 수십 억 건의 유출 비밀번호와 건당 $0.001 이하의 상용 솔버를 가진 공격자가 동일한 일을 하지 못할 이유가 없습니다.
 
 CAPTCHA는 속도 방지턱이지, 콘크리트 장벽이 아닙니다.
+
+> 🔗 **전체 소스 코드와 Docker 테스트 환경**: [github.com/windshock/captcha-bypass](https://github.com/windshock/captcha-bypass)
 
 ---
 

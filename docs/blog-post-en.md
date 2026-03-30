@@ -8,6 +8,8 @@ But what if that CAPTCHA is an automatic door that real attackers walk through i
 
 I decided not to just read the research — I built a Proof of Concept to verify it myself.
 
+> 🔗 **Full source code**: [github.com/windshock/captcha-bypass](https://github.com/windshock/captcha-bypass)
+
 ---
 
 ## An Automatic Bypass Pipeline from Three Open-Source Tools
@@ -217,6 +219,8 @@ At the same time, this PoC is explicitly not an "always works" tool. It can brea
 The point is this: if free tools can bypass audio CAPTCHA, there is no reason an attacker armed with billions of leaked passwords and commercial solvers at $0.001 per solve cannot do the same.
 
 CAPTCHA is a speed bump, not a concrete wall.
+
+> 🔗 **Full source code and Docker test environment**: [github.com/windshock/captcha-bypass](https://github.com/windshock/captcha-bypass)
 
 ---
 

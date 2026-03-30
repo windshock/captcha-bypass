@@ -13,6 +13,7 @@ Playwright + Whisper + Alibaba Page-Agent.
 
 NIST와 OWASP 모두 같은 결론입니다. CAPTCHA는 방어가 아니라 마찰(friction)일 뿐. 진짜 방어는 서버측 토큰 검증, 계정 단위 속도 제한, 그리고 궁극적으로 Passkey/FIDO2.
 
-상세 분석은 블로그에 올려두었습니다. (링크는 댓글)
+상세 분석은 블로그에 올려두었습니다.
+GitHub: https://github.com/windshock/captcha-bypass
 
 #CAPTCHA #InfoSec #Passkey #FIDO2 #Playwright #Whisper #PageAgent #SecurityResearch #사이버보안
