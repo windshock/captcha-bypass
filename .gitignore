@@ -5,3 +5,4 @@ artifacts/
 scripts/__pycache__/
 archive/
 .vscode/
+.DS_Store
